@@ -4,9 +4,17 @@ import sqlite3
 from collections import deque
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import google.generativeai as genai
+import os
+import gdown
+
+folder_id = "1gxwtPi8rupeMSOU6UGg9GnV_c76Xq8kv"
+SAVE_PATH = "mental_health_analysis"
+# ✅ Download the folder if it doesn't exist
+if not os.path.exists(SAVE_PATH):
+    gdown.download_folder(id = folder_id, output=SAVE_PATH, quiet=False)
 
 # ✅ Load RoBERTa Model
-roberta_model_path = "mental_health_analysis"
+roberta_model_path = SAVE_PATH
 roberta_tokenizer = AutoTokenizer.from_pretrained(roberta_model_path)
 roberta_model = AutoModelForSequenceClassification.from_pretrained(roberta_model_path)
 
