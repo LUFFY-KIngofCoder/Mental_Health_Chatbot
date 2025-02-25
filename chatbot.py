@@ -4,6 +4,7 @@ import sqlite3
 from collections import deque
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import google.generativeai as genai
+from dotenv import load_dotenv
 import os
 import gdown
 
@@ -19,7 +20,8 @@ roberta_tokenizer = AutoTokenizer.from_pretrained(roberta_model_path)
 roberta_model = AutoModelForSequenceClassification.from_pretrained(roberta_model_path)
 
 # ✅ Configure Gemini API
-API_KEY = "AIzaSyDd5rZEz47UJ4OpykaiEGpuq4Sxmsb88k4"
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
 genai.configure(api_key=API_KEY)
 gemini_model = genai.GenerativeModel("gemini-pro")
 
