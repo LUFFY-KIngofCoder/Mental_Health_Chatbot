@@ -85,7 +85,14 @@ def analyze_sentiment(text):
 
 # ✅ Emotion Confirmation Logic
 def confirm_emotion(new_emotion, confidence_score):
-    return new_emotion  # Default to normal unless confirmed
+    if confidence_score >= threshold_confidence:
+        emotion_history.append(new_emotion)
+
+        # Check if all last 3 emotions are the same
+        if len(emotion_history) == emotion_history.maxlen:
+            if all(e == new_emotion for e in emotion_history):
+                return new_emotion
+    return "Normal"
 
 
 # ✅ Function to Log Chat Data to SQLite
