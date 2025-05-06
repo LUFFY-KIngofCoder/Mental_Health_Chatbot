@@ -23,7 +23,7 @@ roberta_model = AutoModelForSequenceClassification.from_pretrained(roberta_model
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
 genai.configure(api_key=API_KEY)
-gemini_model = genai.GenerativeModel("gemini-pro")
+gemini_model = genai.GenerativeModel("gemini-2.0-flash")
 
 # ✅ Emotion Labels
 labels = {
